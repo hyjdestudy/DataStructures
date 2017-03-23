@@ -1,27 +1,27 @@
-#define INCREMENT 10  //Ã¿´ÎÀ©Õ¹10¸öÔªËØµÄĞÂ¿Õ¼ä
+#define INCREMENT 10  //æ¯æ¬¡æ‰©å±•10ä¸ªå…ƒç´ çš„æ–°ç©ºé—´
 
 template <class ElemType>
 class SeqQueue {
 private:
-	ElemType *q_base;  //»ùµØÖ·Ö¸Õë
-	int q_front;  //¶ÓÍ·Ö¸Õë
-	int q_rear;  //¶ÓÎ²Ö¸Õë
-	int q_size;  //¶Ó´óĞ¡
+	ElemType *q_base;  //åŸºåœ°å€æŒ‡é’ˆ
+	int q_front;  //é˜Ÿå¤´æŒ‡é’ˆ
+	int q_rear;  //é˜Ÿå°¾æŒ‡é’ˆ
+	int q_size;  //é˜Ÿå¤§å°
 public:
-	SeqQueue(int size);  //1.¹¹Ôìº¯Êı
-	~SeqQueue();  //2.Îö¹¹º¯Êı
-	void clear();  //3.Çå¿Õ¶ÓÁĞ
-	bool is_empty() const;  //4.¶ÓÁĞÅĞ¿Õ
-	int get_length() const;  //5.»ñÈ¡¶ÓÁĞ³¤¶È
-	ElemType & get_first() const;  //6.È¡¶ÓÍ·ÔªËØÖµ
-	ElemType & get_last() const;  //7.È¡¶ÓÎ²ÔªËØÖµ
-	void append(const ElemType &elem);  //8.Èë¶Ó
-	void remove();  //9.³ö¶Ó
-	void traverse() const;  //10.±éÀú¶ÓÁĞ
-	void show_infor() const;  //11.ÏÔÊ¾¶ÓÁĞ»ù±¾ĞÅÏ¢
+	SeqQueue(int size=100);  //1.æ„é€ å‡½æ•°
+	~SeqQueue();  //2.ææ„å‡½æ•°
+	void clear();  //3.æ¸…ç©ºé˜Ÿåˆ—
+	bool is_empty() const;  //4.é˜Ÿåˆ—åˆ¤ç©º
+	int get_length() const;  //5.è·å–é˜Ÿåˆ—é•¿åº¦
+	ElemType & get_first() const;  //6.å–é˜Ÿå¤´å…ƒç´ å€¼
+	ElemType & get_last() const;  //7.å–é˜Ÿå°¾å…ƒç´ å€¼
+	void append(const ElemType &elem);  //8.å…¥é˜Ÿ
+	void remove();  //9.å‡ºé˜Ÿ
+	void traverse() const;  //10.éå†é˜Ÿåˆ—
+	void show_infor() const;  //11.æ˜¾ç¤ºé˜Ÿåˆ—åŸºæœ¬ä¿¡æ¯
 };
 
-//1.¹¹Ôìº¯Êı£¬·ÖÅäsize¸ö½áµãµÄË³Ğò¿Õ¼ä£¬¹¹ÔìÒ»¸ö¿ÕµÄÑ­»·¶ÓÁĞ
+//1.æ„é€ å‡½æ•°ï¼Œåˆ†é…sizeä¸ªç»“ç‚¹çš„é¡ºåºç©ºé—´ï¼Œæ„é€ ä¸€ä¸ªç©ºçš„å¾ªç¯é˜Ÿåˆ—
 template <class ElemType>
 SeqQueue <ElemType>::SeqQueue(int size) {  
 	q_front = q_rear = 0;
@@ -29,50 +29,50 @@ SeqQueue <ElemType>::SeqQueue(int size) {
 	q_size = size;
 }
 
-//2.Îö¹¹º¯Êı£¬Ïú»Ù¶ÓÁĞ
+//2.ææ„å‡½æ•°ï¼Œé”€æ¯é˜Ÿåˆ—
 template <class ElemType>
 SeqQueue <ElemType>::~SeqQueue() {
 	delete[] q_base;
 }
 
-//3.Çå¿Õ¶ÓÁĞ
+//3.æ¸…ç©ºé˜Ÿåˆ—
 template <class ElemType>
 void SeqQueue <ElemType>::clear() {
 	q_front = q_rear = 0;
 }
 
-//4.¶ÓÁĞÅĞ¿Õ
+//4.é˜Ÿåˆ—åˆ¤ç©º
 template <class ElemType>
 bool SeqQueue <ElemType>::is_empty() const{
 	return q_front == q_rear;
 }
 
-//5.»ñÈ¡¶ÓÁĞ³¤¶È
+//5.è·å–é˜Ÿåˆ—é•¿åº¦
 template <class ElemType>
 int SeqQueue<ElemType>::get_length() const{
 	return (q_rear - q_front + q_size) % q_size;
 }
 
-//6.È¡¶ÓÍ·ÔªËØÖµ£¬Ç°ÌáÊÇ¶ÓÁĞ·Ç¿Õ
+//6.å–é˜Ÿå¤´å…ƒç´ å€¼ï¼Œå‰ææ˜¯é˜Ÿåˆ—éç©º
 template <class ElemType>
 ElemType & SeqQueue <ElemType>::get_first() const {
 	return q_base[q_front];
 }
 
-//7.È¡¶ÓÎ²ÔªËØÖµ£¬Ç°ÌáÊÇ¶ÓÁĞ·Ç¿Õ
+//7.å–é˜Ÿå°¾å…ƒç´ å€¼ï¼Œå‰ææ˜¯é˜Ÿåˆ—éç©º
 template <class ElemType>
 ElemType & SeqQueue <ElemType>::get_last() const{
 	return q_base[(q_rear - 1 + q_size) % q_size];
 }
 
-//8.Èë¶Ó£¬²åÈëelemµ½¶ÓÎ²
+//8.å…¥é˜Ÿï¼Œæ’å…¥elemåˆ°é˜Ÿå°¾
 template <class ElemType>
 void SeqQueue <ElemType>::append(const ElemType &elem) {
-	//Èç¹û¶ÓÂú£¬À©³ä¿Õ¼ä,Ò»¶¨×¢ÒâÊÇ¶ÓÁĞÂúÁËÒÔºóÔÙÀ©£¬´ËÊ±¶ÓÍ·ºÍ¶ÓÎ²Ö¸ÕëÕıºÃÊÇ°¤×ÅµÄ
+	//å¦‚æœé˜Ÿæ»¡ï¼Œæ‰©å……ç©ºé—´,ä¸€å®šæ³¨æ„æ˜¯é˜Ÿåˆ—æ»¡äº†ä»¥åå†æ‰©ï¼Œæ­¤æ—¶é˜Ÿå¤´å’Œé˜Ÿå°¾æŒ‡é’ˆæ­£å¥½æ˜¯æŒ¨ç€çš„
 	if ((q_rear + 1) % q_size == q_front) {
 		ElemType *newbase;
-		newbase = new ElemType[q_size+INCREMENT];  //·ÖÅäĞÂ¿Õ¼ä
-		int i = 0, j = 0;  //iÓÃÓÚ±éÀúÔ­¶ÓÁĞ£¬jÓÃÓÚ¸´ÖÆµ½ĞÂ¶ÓÁĞÀï
+		newbase = new ElemType[q_size+INCREMENT];  //åˆ†é…æ–°ç©ºé—´
+		int i = 0, j = 0;  //iç”¨äºéå†åŸé˜Ÿåˆ—ï¼Œjç”¨äºå¤åˆ¶åˆ°æ–°é˜Ÿåˆ—é‡Œ
 		for (i = q_front, j = 0; i < q_rear; i = (i + 1) % q_size, j++) {
 			newbase[j] = q_base[i];
 		}
@@ -86,17 +86,17 @@ void SeqQueue <ElemType>::append(const ElemType &elem) {
 	q_rear = (q_rear + 1) % q_size;
 }
 
-//9.³ö¶Ó£¬ÏÈ¾öÌõ¼şÊÇ¶ÓÁĞ·Ç¿Õ
+//9.å‡ºé˜Ÿï¼Œå…ˆå†³æ¡ä»¶æ˜¯é˜Ÿåˆ—éç©º
 template <class ElemType>
 void SeqQueue <ElemType>::remove() {
 	q_front = (q_front + 1) % q_size;
 }
 
-//10.±éÀú
+//10.éå†
 template <class ElemType>
 void SeqQueue <ElemType>::traverse() const {
 	if (q_front == q_rear) {
-		cout << "¶ÓÁĞÎª¿Õ£¬²»ÄÜ±éÀú£¡" << endl;
+		cout << "é˜Ÿåˆ—ä¸ºç©ºï¼Œä¸èƒ½éå†ï¼" << endl;
 	}
 	else {
 		int i = q_front;
@@ -108,22 +108,22 @@ void SeqQueue <ElemType>::traverse() const {
 	}
 }
 
-//11.ÏÔÊ¾¶ÓÁĞ»ù±¾ĞÅÏ¢
+//11.æ˜¾ç¤ºé˜Ÿåˆ—åŸºæœ¬ä¿¡æ¯
 template <class ElemType>
 void SeqQueue <ElemType>::show_infor() const {
-	cout << "--¶ÓÁĞ»ù±¾ĞÅÏ¢--" << endl;
-	char *msg = (this->is_empty()) ? "ÊÇ" : "·ñ";
-	cout << "¶ÓÁĞÊÇ·ñÎª¿Õ£º"<<msg<<endl;
-	cout << "¶ÓÁĞ×ÜÈİÁ¿£º" << this->q_size << endl;
-	cout << "¶ÓÁĞÓĞĞ§³¤¶È£º" << this->get_length() << endl;
-	if (!(this->is_empty())) {  //¶ÓÁĞ²»¿Õ
-		cout << "¶ÓÍ·ÔªËØ£º" << this->get_first() << endl;
-		cout << "¶ÓÎ²ÔªËØ£º" << this->get_last() << endl;
-		cout << "±éÀú¶ÓÁĞ£º" << endl;
+	cout << "--é˜Ÿåˆ—åŸºæœ¬ä¿¡æ¯--" << endl;
+	char *msg = (this->is_empty()) ? "æ˜¯" : "å¦";
+	cout << "é˜Ÿåˆ—æ˜¯å¦ä¸ºç©ºï¼š"<<msg<<endl;
+	cout << "é˜Ÿåˆ—æ€»å®¹é‡ï¼š" << this->q_size << endl;
+	cout << "é˜Ÿåˆ—æœ‰æ•ˆé•¿åº¦ï¼š" << this->get_length() << endl;
+	if (!(this->is_empty())) {  //é˜Ÿåˆ—ä¸ç©º
+		cout << "é˜Ÿå¤´å…ƒç´ ï¼š" << this->get_first() << endl;
+		cout << "é˜Ÿå°¾å…ƒç´ ï¼š" << this->get_last() << endl;
+		cout << "éå†é˜Ÿåˆ—ï¼š" << endl;
 		this->traverse();
 	}
 	else {
-		cout << "¶ÓÍ·ÔªËØ£º¿Õ"  << endl;
-		cout << "¶ÓÎ²ÔªËØ£º¿Õ"  << endl;
+		cout << "é˜Ÿå¤´å…ƒç´ ï¼šç©º"  << endl;
+		cout << "é˜Ÿå°¾å…ƒç´ ï¼šç©º"  << endl;
 	}
 }
